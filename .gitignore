@@ -35,5 +35,5 @@
 .env
 
 # Inputs and Logs
-/inputs
+/input
 /logs

@@ -1,6 +1,6 @@
 {
     "name": "sanity-sync",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "A TypeScript library to add, update, and delete Sanity dataset documents using JSON input files.",
     "type": "module",
     "main": "src/index.ts",

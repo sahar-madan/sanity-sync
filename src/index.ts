@@ -10,20 +10,16 @@ import { log } from './utils/logger';
  */
 const handleOperation = async (
 	operationName: string,
-	readFn: () => unknown[],
+	readFn: () => Record<string, any>[],
 	processFn: (docs: any[]) => Promise<void>
 ): Promise<void> => {
 	try {
-		const documents = readFn();
-		if (Array.isArray(documents) && documents.length > 0) {
-			await processFn(documents);
-			log.success(`Documents ${operationName} successfully.`);
-		} else {
-			log.warning(`No documents to ${operationName}.`);
-		}
+		const document = readFn();
+		if (document) await processFn(document);
+		else log.info(`No documents to ${operationName}.`);
 	} catch (err) {
 		const error = err as Error;
-		log.error(`Error during ${operationName} operation: ${error.message}`);
+		throw new Error(`Error processing ${operationName} documents: ${error.message}`);
 	}
 };
 
@@ -39,4 +35,6 @@ const processDocuments = async (): Promise<void> => {
 };
 
 // Run the script
-processDocuments().catch((err) => log.error(`Unhandled error: ${err.message}`));
+processDocuments().catch((err) => {
+	throw new Error(`Unhandled error: ${err.message}`);
+});

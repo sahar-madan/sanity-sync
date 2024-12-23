@@ -26,8 +26,8 @@ SANITY_TOKEN=your_sanity_token
 1. Add your Sanity project configuration to the `.env` file as shown above.
 2. Ensure that your JSON files are structured correctly for adding, updating, or deleting documents.
 3. The library expects three JSON files in the `input` folder (which should be gitignored):
-4. `add.json`: A JSON file containing documents to add. Fields should contain all necessary data except for the `_id`, which will be auto-generated.
-5. `update.json`: A JSON file containing documents to update. Use the `_id` field to specify which document to update. Only the fields provided will be updated (no replacements).
+4. `add.json`: A JSON file containing documents to add. Fields should contain all necessary data including `_type` except for the `_id`, which will be auto-generated.
+5. `update.json`: A JSON file containing documents to update. Should contain all the fields to update, See below for examples.
 6. `delete.json`: A JSON file containing an array of document IDs to delete.
 7. Run the following command to execute the script:
 
@@ -58,8 +58,8 @@ Different log levels:
 
 ```json
 [{
-	"title": "New Document",
-	"content": "This is a newly added document"
+	"_type": "blog", // Required - Type of the Document
+	"content": "This is a newly added blog post"
 }]
 ```
 
@@ -67,7 +67,7 @@ Different log levels:
 
 ```json
 [{
-	"_id": [Document ID],
+	"_id": [Document ID], // Required - Update where _id is this
 	"content": "This is a newly added document"
 }]
 ```
@@ -75,8 +75,13 @@ OR
 
 ```json
 {
-	"_id": [Document ID],
-	"content": "This is a newly added document"
+	"query": [Sanity Query],
+	"params": {}, // Optional - Query params
+	"onlyIfMissing": true, // Optional - Only Update if missing in Schema
+	"update": {
+		"content": "This is a newly added document",
+	},
+	"delete": ["title"] // Optional - Fields to Delete
 }
 ```
 
