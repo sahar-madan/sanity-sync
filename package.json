@@ -1,0 +1,46 @@
+{
+    "name": "sanity-sync",
+    "version": "1.0.0",
+    "description": "A TypeScript library to add, update, and delete Sanity dataset documents using JSON input files.",
+    "type": "module",
+    "main": "src/index.ts",
+    "license": "MIT",
+    "scripts": {
+        "husky:prepare": "npx husky",
+        "start": "npx tsx src/index.ts",
+        "build": "npx tsc",
+        "lint": "npm run lint:eslint",
+        "lint:fix": "npm run lint:eslint:fix",
+        "format:check": "npx prettier --check --ignore-unknown \"src/**/*.{js,ts,json,md}\"",
+        "format:prettier": "npx prettier --write \"src/**/*.{js,ts,json,md}\"",
+        "lint:eslint": "npx eslint",
+        "lint:eslint:fix": "npx eslint --fix"
+    },
+    "dependencies": {
+        "@eslint/compat": "^1.2.4",
+        "@sanity/client": "^2.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.18.1",
+        "chalk": "^5.4.1",
+        "dotenv": "^16.4.7",
+        "fs-extra": "^10.1.0"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.6.0",
+        "@commitlint/config-conventional": "^19.6.0",
+        "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+        "@types/chalk": "^2.2.4",
+        "@types/fs-extra": "^11.0.4",
+        "@types/jest": "^28.0.0",
+        "@types/node": "^18.0.0",
+        "eslint": "^9.16.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.2.10",
+        "prettier": "^3.4.2",
+        "tsconfig-paths": "^4.2.0",
+        "tsx": "^4.19.2",
+        "typescript": "^5.0.0"
+    }
+}

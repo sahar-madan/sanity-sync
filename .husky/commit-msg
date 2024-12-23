@@ -1,0 +1,14 @@
+#!/bin/sh
+
+npx commitlint --edit || {
+  echo ""
+  echo "❌ Commitlint failed! Please review and correct your commit message."
+  echo "✍️ Follow the conventional commit message format:"
+  echo "   [type](optional scope): description"
+  echo "   e.g., feat(user): add new feature"
+  echo ""
+  echo "Checkout this documentation for more information 🙂"
+  echo "https://www.conventionalcommits.org/en/v1.0.0/"
+  echo ""
+  exit 1
+}
